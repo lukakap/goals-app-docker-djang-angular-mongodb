@@ -1,0 +1,25 @@
+--------------------------------------------------
+                    Build 
+--------------------------------------------------
+
+docker build . -t node-util
+
+--------------------------------------------------
+                    Run 
+--------------------------------------------------
+
+docker run -it -v "$(pwd):/app" node-util npm init 
+
+
+--------------------------------------------------
+            Run With Entry point 
+--------------------------------------------------
+
+docker run -it -v "$(pwd):/app" node-util init 
+
+
+--------------------------------------------------
+    Run docker-compose for utility container (below npm is name of service (container) not npm command)
+--------------------------------------------------
+
+docker-compose run --rm npm init

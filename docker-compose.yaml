@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  # mongodb - is like name of container
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    # environment:
+      # # both syntax will work
+      # MONGO_INITDB_ROOT_USERNAME: luka
+      # MONGO_INITDB_ROOT_PASSWORD: secret
+      # - MONGO_INITDB_ROOT_USERNAME=luka
+      # - MONGO_INITDB_ROOT_PASSWORD=secret
+    env_file:
+      - ./env/mongo.env
+  backend:
+    build: ./django_api
+    # longer build
+    # build:
+    #   context: ./django_api
+    #   dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      # - $(pwd):/app
+      # we can use relative path here
+      - ./django_api:/app
+    # sometimes one container is depend on second one.
+    # that means second one already should be up and running
+    # before first container. as it is in our example
+    depends_on:
+      - mongodb
+    env_file:
+      - ./env/backend.env
+
+
+
+volumes:
+  # here should be list of named volumes
+  data:

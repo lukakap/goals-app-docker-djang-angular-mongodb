@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  npm:
+    build: ./
+    # if node (npm) asks to stream inside some information, container will
+    # run in iteractive mode
+    stdin_open: true
+    tty: true 
+    volumes:
+      - ./:/app
+    
