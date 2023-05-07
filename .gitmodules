@@ -1,0 +1,3 @@
+[submodule "goals-front"]
+	path = goals-front
+	url = https://github.com/lukakap/goals-app-docker-angular.git
